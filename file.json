@@ -1,1 +1,191 @@
-{"swagger":"2.0","info":{"title":"CTM2","description":"API for CTM","version":"1.0.0"},"host":"pt6joc38v8.execute-api.us-east-1.amazonaws.com","basePath":"/v1","schemes":["https"],"produces":["application/json"],"paths":{"/accounts":{"parameters":[{"name":"config_SortDir","in":"query","required":false,"type":"string"},{"name":"config_SortBy","in":"query","required":false,"type":"string"}],"responses":{"200":{"description":"Empty","headers":{"Access-Control-Allow-Origin":{"type":"string"}}},"400":{"description":"Empty","headers":{"Access-Control-Allow-Origin":{"type":"string"}}},"500":{"description":"Empty","headers":{"Access-Control-Allow-Origin":{"type":"string"}}}},"x-amazon-apigateway-integration":{"requestTemplates":{"application/json":"{\n  \"Header\":{\n     #if($!input.params(\"config_PageSize\") !\u003d \"\")\n        \"PageSize\" : $input.params(\"config_PageSize\"),\n     #end\n     #if($!input.params(\"config_StartPosition\") !\u003d \"\")\n        \"StartPosition\" : $input.params(\"config_StartPosition\"),\n     #end    \n     #if($!input.params(\"config_SortBy\") !\u003d \"\")\n        \"SortBy\" : $input.params(\"config_SortBy\"),\n     #end    \n     #if($!input.params(\"config_SortDir\") !\u003d \"\")\n        \"SortDir\" : $input.params(\"config_SortDir\"),\n     #end    \n  }\n  \"Params\":{\n      #if($!input.params(\"AccountIDs\") !\u003d \"\")\n        \"AccountIDs\" : [$input.params(\"AccountIDs\"))],\n      #end    \n      #if($!input.params(\"Name\") !\u003d \"\")\n        \"Name\" : \"$input.params(\u0027Name\u0027)\",\n      #end   \n      #if($!input.params(\"AccountTypeIDs\") !\u003d \"\")\n        \"AccountTypeIDs\" : [$input.params(\"AccountTypeIDs\")],\n      #end   \n      #if($!input.params(\"AccountTypeName\") !\u003d \"\")\n        \"AccountTypeName\" : \"$input.params(\u0027AccountTypeName\u0027)\",\n      #end   \n      #if($!input.params(\"PaymentTerm\") !\u003d \"\")\n        \"PaymentTerm\" : \"$input.params(\u0027PaymentTerm\u0027)\",\n      #end   \n      #if($!input.params(\"IsActive\") !\u003d \"\")\n        \"IsActive\" : $input.params(\"IsActive\"),\n      #end  \n    }\n}"},"responses":{"4\\d{2}":{"responseParameters":{"method.response.header.Access-Control-Allow-Origin":"\u0027*\u0027"},"responseTemplates":{"application/json":"$input.json(\"$.Reasons\")"},"statusCode":"400"},"5\\d{2}":{"responseParameters":{"method.response.header.Access-Control-Allow-Origin":"\u0027*\u0027"},"responseTemplates":{"application/json":"$input.json(\"$.Reasons\")"},"statusCode":"500"},"2\\d{2}":{"responseParameters":{"method.response.header.Access-Control-Allow-Origin":"\u0027*\u0027"},"responseTemplates":{"application/json":"$input.json(\"$.Data\")"},"statusCode":"200"}},"httpMethod":"POST","type":"HTTP","uri":"https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/account/getCollection"},"x-amazon-apigateway-auth":{"type":"NONE"}}}}
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CTM2",
+    "description": "API for CTM",
+    "version": "1.0.0"
+  },
+  "host": "pt6joc38v8.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/accounts": {
+      "get": {
+        "parameters": [
+          {
+            "name": "config_SortDir",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_SortBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "AccountIDs",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PaymentTerm",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_PageSize",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "IsActive",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_StartPosition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "AccountTypeIDs",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "AccountTypeName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n  \"Header\":{\n     #if($!input.params(\"config_PageSize\") != \"\")\n        \"PageSize\" : $input.params(\"config_PageSize\"),\n     #end\n     #if($!input.params(\"config_StartPosition\") != \"\")\n        \"StartPosition\" : $input.params(\"config_StartPosition\"),\n     #end    \n     #if($!input.params(\"config_SortBy\") != \"\")\n        \"SortBy\" : $input.params(\"config_SortBy\"),\n     #end    \n     #if($!input.params(\"config_SortDir\") != \"\")\n        \"SortDir\" : $input.params(\"config_SortDir\"),\n     #end    \n  }\n  \"Params\":{\n      #if($!input.params(\"AccountIDs\") != \"\")\n        \"AccountIDs\" : [$input.params(\"AccountIDs\"))],\n      #end    \n      #if($!input.params(\"Name\") != \"\")\n        \"Name\" : \"$input.params(\u0027Name')\",\n      #end   \n      #if($!input.params(\"AccountTypeIDs\") != \"\")\n        \"AccountTypeIDs\" : [$input.params(\"AccountTypeIDs\")],\n      #end   \n      #if($!input.params(\"AccountTypeName\") != \"\")\n        \"AccountTypeName\" : \"$input.params(\u0027AccountTypeName')\",\n      #end   \n      #if($!input.params(\"PaymentTerm\") != \"\")\n        \"PaymentTerm\" : \"$input.params(\u0027PaymentTerm')\",\n      #end   \n      #if($!input.params(\"IsActive\") != \"\")\n        \"IsActive\" : $input.params(\"IsActive\"),\n      #end  \n    }\n}"
+          },
+          "responses": {
+            "4\\d{2}": {
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "statusCode": "400"
+            },
+            "5\\d{2}": {
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "statusCode": "500"
+            },
+            "2\\d{2}": {
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "statusCode": "200"
+            }
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/account/getCollection"
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        },
+        "responses": {
+          "200": {
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            },
+            "description": "Empty"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS,PATCH'",
+                "method.response.header.Access-Control-Allow-Headers": "'\u0027'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              },
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "statusCode": "200"
+            }
+          },
+          "type": "MOCK"
+        },
+        "parameters": []
+      }
+    }
+  }
+}
