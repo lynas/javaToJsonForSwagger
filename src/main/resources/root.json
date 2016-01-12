@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CTM22",
+    "description": "API for Corporate Training",
+    "version": "1.0.0"
+  },
+  "host": "pt6joc38v8.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {}
+}
