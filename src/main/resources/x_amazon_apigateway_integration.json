@@ -1,0 +1,37 @@
+{
+  "requestTemplates": {
+    "application/json": "{\n    \"Params\": $input.json(\"$\")\n}"
+  },
+  "httpMethod": "POST",
+  "type": "HTTP",
+  "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/account_affiliation/post",
+  "responses": {
+    "4\\d{2}": {
+      "statusCode": "400",
+      "responseTemplates": {
+        "application/json": "$input.json(\"$.Reasons\")"
+      },
+      "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+      }
+    },
+    "5\\d{2}": {
+      "statusCode": "500",
+      "responseTemplates": {
+        "application/json": "$input.json(\"$.Reasons\")"
+      },
+      "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+      }
+    },
+    "2\\d{2}": {
+      "statusCode": "200",
+      "responseTemplates": {
+        "application/json": "$input.json(\"$.Data\")"
+      },
+      "responseParameters": {
+        "method.response.header.Access-Control-Allow-Origin": "'*'"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "200": {
+    "description": "Empty",
+    "headers": {
+      "Access-Control-Allow-Origin": {
+        "type": "string"
+      }
+    }
+  },
+  "400": {
+    "description": "Empty",
+    "headers": {
+      "Access-Control-Allow-Origin": {
+        "type": "string"
+      }
+    }
+  },
+  "500": {
+    "description": "Empty",
+    "headers": {
+      "Access-Control-Allow-Origin": {
+        "type": "string"
+      }
+    }
+  }
+}

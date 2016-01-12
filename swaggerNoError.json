@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "New CT",
-    "description": "API for authorization module",
+    "title": "CTM",
+    "description": "API for Corporate Training",
     "version": "1.0.0"
   },
   "host": "pt6joc38v8.execute-api.us-east-1.amazonaws.com",
@@ -5829,6 +5829,132 @@
         }
       }
     },
+    "/instructors/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"InstructorID\": $input.params(\"id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/instructor/get",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
     "/products": {
       "get": {
         "parameters": [
@@ -8063,32 +8189,3064 @@
           "type": "NONE"
         }
       }
-    }
-  },
-  "definitions": {
-    "Account": {
-      "type": "object",
-      "properties": {
-        "AccountIDs": {
-          "type": "array",
-          "items": {
-            "type": "integer"
+    },
+    "/packages": {
+      "get": {
+        "parameters": [
+          {
+            "name": "config_SortDir",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_SortBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_PageSize",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_StartPosition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PackageIDs",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "AccountID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
           }
         },
-        "AccountName": {
-          "type": "string"
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n  \"Header\":{\n     #if($!input.params(\"config_PageSize\") != \"\")\n        \"PageSize\" : $input.params(\"config_PageSize\"),\n     #end\n     #if($!input.params(\"config_StartPosition\") != \"\")\n        \"StartPosition\" : $input.params(\"config_StartPosition\"),\n     #end\n     #if($!input.params(\"config_SortBy\") != \"\")\n        \"SortBy\" : $input.params(\"config_SortBy\"),\n     #end\n     #if($!input.params(\"config_SortDir\") != \"\")\n        \"SortDir\" : $input.params(\"config_SortDir\"),\n     #end\n  }\n  \"Params\":{\n      #if($!input.params(\"PackageIDs\") != \"\")\n        \"PackageIDs\" : [$input.params(\"PackageIDs\"))],\n      #end\n      #if($!input.params(\"AccountID\") != \"\")\n        \"AccountID\" : \"$input.params('AccountID')\",\n      #end\n      #if($!input.params(\"Name\") != \"\")\n        \"Name\" : \"$input.params('Name')\",\n      #end\n      #if($!input.params(\"Description\") != \"\")\n        \"Description\" : \"$input.params('Description')\",\n      #end\n      #if($!input.params(\"StartDate\") != \"\")\n        \"StartDate\" : \"$input.params('StartDate')\",\n      #end\n      #if($!input.params(\"EndDate\") != \"\")\n        \"EndDate\" : \"$input.params('EndDate')\",\n      #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/getCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\": $input.json(\"$\")\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/post",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
         }
       }
     },
-    "Error": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
+    "/packages/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PackageID\": $input.params(\"id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/get",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
         }
       },
-      "title": "Error Schema",
-      "description": "This is a default error schema model"
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "patch": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PackageID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n        \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/patch",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PackageID\": $input.params(\"id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/delete",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/products": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "config_SortDir",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_SortBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_PageSize",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_StartPosition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProductName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ProductType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Location",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "InstructorName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PackageID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n            \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_product/getCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/composite/{package_id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "package_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PackageID\" : $input.params(\"package_id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/getComposite",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "package_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/composite": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\": $input.json(\"$\")\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package/postComposite",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/opportunities": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n  \"Params\": {\n    \"PackageID\": $input.params(\"id\")\n  }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/getCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PackageID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n                \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/post",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/opportunities/collection": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($bulkParams = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"Collection\": [\n            #foreach($params in $bulkParams)\n                {\n                #foreach($key in $params.keySet())\n                    \"PackageID\": $input.params(\"id\"),\n                    \"$key\" : \"$params.get($key)\"\n                #end\n                }\n            #end\n        ]\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/postCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/opportunities/{package_opportunity_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PackageID\":$input.params(\"id\"),\n        \"PackageOpportunityID\":$input.params(\"package_opportunity_id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/delete",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/opportunities/{package_opportunity_id}/order": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PackageID\": $input.params(\"id\"),\n        \"PackageOpportunityID\": $input.params(\"package_opportunity_id\"),\n        #foreach($key in $params.keySet())\n                \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/postOrder",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/packages/{id}/opportunities/{package_opportunity_id}/credit": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PackageID\": $input.params(\"id\"),\n        \"PackageOpportunityID\": $input.params(\"package_opportunity_id\"),\n        #foreach($key in $params.keySet())\n                \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/package_opportunity/postCredit",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "package_opportunity_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books": {
+      "get": {
+        "parameters": [
+          {
+            "name": "config_SortDir",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_SortBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_PageSize",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "config_StartPosition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PriceBookIDs",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "IsActive",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n  \"Header\":{\n     #if($!input.params(\"config_PageSize\") != \"\")\n        \"PageSize\" : $input.params(\"config_PageSize\"),\n     #end\n     #if($!input.params(\"config_StartPosition\") != \"\")\n        \"StartPosition\" : $input.params(\"config_StartPosition\"),\n     #end\n     #if($!input.params(\"config_SortBy\") != \"\")\n        \"SortBy\" : $input.params(\"config_SortBy\"),\n     #end\n     #if($!input.params(\"config_SortDir\") != \"\")\n        \"SortDir\" : $input.params(\"config_SortDir\"),\n     #end\n  }\n  \"Params\":{\n      #if($!input.params(\"PriceBookIDs\") != \"\")\n        \"PriceBookIDs\" : [$input.params(\"PriceBookIDs\"))],\n      #end\n      #if($!input.params(\"Name\") != \"\")\n        \"Name\" : \"$input.params('Name')\",\n      #end\n      #if($!input.params(\"Description\") != \"\")\n        \"Description\" : \"$input.params('Description')\",\n      #end\n      #if($!input.params(\"IsActive\") != \"\")\n        \"IsActive\" : \"$input.params('IsActive')\",\n      #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/getCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\": $input.json(\"$\")\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/post",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PriceBookID\": $input.params(\"id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/get",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "patch": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PriceBookID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n        \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/patch",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PriceBookID\": $input.params(\"id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/delete",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/composite": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\": $input.json(\"$\")\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/postComposite",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/{id}/price_book_entries": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PriceBookID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n            \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/getCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PriceBookID\": $input.params(\"id\"),\n        #foreach($key in $params.keySet())\n            \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/post",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/{id}/price_book_entries/collection": {
+      "post": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($bulkParams = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"Collection\": [\n            #foreach($params in $bulkParams)\n                {\n                #foreach($key in $params.keySet())\n                    \"PriceBookID\": $input.params(\"id\"),\n                    \"$key\" : \"$params.get($key)\"\n                #end\n                }\n            #end\n        ]\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/postCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "patch": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($bulkParams = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"Collection\": [\n            #foreach($params in $bulkParams)\n                {\n                #foreach($key in $params.keySet())\n                    \"PriceBookID\": $input.params(\"id\"),\n                    \"$key\" : \"$params.get($key)\"\n                #end\n                }\n            #end\n        ]\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/patchCollection",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/{id}/price_book_entries/{entry_id}": {
+      "patch": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "#set($params = $input.path(\"$\"))\n{\n    \"Params\": {\n        \"PriceBookID\": $input.params(\"id\"),\n        \"PriceBookEntryID\": $input.params(\"entry_id\"),\n        #foreach($key in $params.keySet())\n            \"$key\" : \"$params.get($key)\"\n        #end\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/patch",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS,PATCH'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "entry_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PriceBookID\":$input.params(\"id\"),\n        \"PriceBookEntryID\":$input.params(\"entry_id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book_entry/delete",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
+    },
+    "/price_books/composite/{price_book_id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "price_book_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\n    \"Params\":{\n        \"PriceBookID\" : $input.params(\"price_book_id\")\n    }\n}"
+          },
+          "httpMethod": "POST",
+          "type": "HTTP",
+          "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/price_book/getComposite",
+          "responses": {
+            "4\\d{2}": {
+              "statusCode": "400",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "5\\d{2}": {
+              "statusCode": "500",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Reasons\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            },
+            "2\\d{2}": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": "$input.json(\"$.Data\")"
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      },
+      "options": {
+        "parameters": [
+          {
+            "name": "price_book_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empty",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "type": "MOCK",
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseTemplates": {
+                "application/json": ""
+              },
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,OPTIONS'"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-auth": {
+          "type": "NONE"
+        }
+      }
     }
   }
 }
