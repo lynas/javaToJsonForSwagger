@@ -10,6 +10,6 @@ public class RequestTemplate {
     private String  application_json;
 
     public RequestTemplate(String application_json) {
-        this.application_json = "application_json";
+        this.application_json = application_json;
     }
 }
