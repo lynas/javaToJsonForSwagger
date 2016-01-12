@@ -65,5 +65,30 @@
     "type": "HTTP",
     "uri": "https://${stageVariables.host_base_url}/web-corporate/api/submit/corporate/account_affiliation/post"
   },
-  "parameters": []
+  "parameters": [
+    {
+      "name": "config_SortDir",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "config_SortBy",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "config_PageSize",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "config_StartPosition",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    }
+  ]
 }

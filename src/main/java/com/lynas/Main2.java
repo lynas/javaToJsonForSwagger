@@ -36,7 +36,7 @@ public class Main2 {
 
 
         Map<String, Object> post = new HashMap<>();
-        post.put("parameters", new ArrayList<>());
+        post.put("parameters", new ParameterMaker().makerParam());
         post.put("responses", result);
         post.put("x-amazon-apigateway-integration", result2);
         post.put("x-amazon-apigateway-auth", result3);
