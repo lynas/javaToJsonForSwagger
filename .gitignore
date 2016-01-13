@@ -1,4 +1,4 @@
-/JavaToJsonSwagger.iml
+*.iml
 /.idea
 /target
 /out
