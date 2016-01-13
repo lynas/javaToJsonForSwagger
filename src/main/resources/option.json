@@ -1,0 +1,41 @@
+{
+  "parameters": [],
+  "responses": {
+    "200": {
+      "description": "Empty",
+      "headers": {
+        "Access-Control-Allow-Origin": {
+          "type": "string"
+        },
+        "Access-Control-Allow-Methods": {
+          "type": "string"
+        },
+        "Access-Control-Allow-Headers": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "requestTemplates": {
+      "application/json": "{\"statusCode\": 200}"
+    },
+    "type": "MOCK",
+    "responses": {
+      "default": {
+        "statusCode": "200",
+        "responseTemplates": {
+          "application/json": ""
+        },
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Origin": "'*'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-auth": {
+    "type": "NONE"
+  }
+}
